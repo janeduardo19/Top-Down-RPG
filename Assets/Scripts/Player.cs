@@ -87,11 +87,13 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            speed = runSpeed;
             _isRolling = true;
         }
 
         if (Input.GetMouseButtonUp(1))
         {
+            speed = initialSpeed;
             _isRolling = false;
         }
     }
