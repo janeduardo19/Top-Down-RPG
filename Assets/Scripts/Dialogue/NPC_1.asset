@@ -19,12 +19,12 @@ MonoBehaviour:
   - actorName: Heroi
     profile: {fileID: -8091321643688609963, guid: c71efedae7048f84bab26ac2b3b0b2c8, type: 3}
     sentence:
-      portuguese: "Ol\xE1, Mundo!"
-      english: 
-      turkish: 
+      portuguese: "Ol\xE1"
+      english: Hello
+      turkish: Merhaba
   - actorName: Mundo
     profile: {fileID: 1520451181664079847, guid: 60bb3f59349fef74a9a913f589416c19, type: 3}
     sentence:
-      portuguese: Que que ce quer?
-      english: 
-      turkish: 
+      portuguese: De boa?
+      english: Alright?
+      turkish: Ne haber?
