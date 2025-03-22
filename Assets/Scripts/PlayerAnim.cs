@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour
 {
+    [Header("Attack Settings")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float radius;
+    [SerializeField] private LayerMask enemyLayer;
+
     private Player player;
     private Animator anim;
+
+    private bool isHitting;
+    private float recoveryTime = 1;
+    private float timeCount;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +28,17 @@ public class PlayerAnim : MonoBehaviour
     {
         OnMove();
         OnRun();
+        OnAttackAnim();
+        timeCount += Time.deltaTime;
+
+        if (isHitting)
+        {
+            if(timeCount >= recoveryTime)
+            {
+                isHitting = false;
+                timeCount = 0f;
+            }
+        }
     }
 
 
@@ -30,9 +50,6 @@ public class PlayerAnim : MonoBehaviour
             if (player.isRolling)
             {
                 anim.SetTrigger("isRoll");
-            } else
-            {
-                anim.SetInteger("transition", 1);
             }
         }
         else
@@ -61,4 +78,40 @@ public class PlayerAnim : MonoBehaviour
     }
 
     #endregion
+
+    #region Attack
+    
+    public void OnAttack()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, enemyLayer);
+
+        if (hit != null)
+        {
+            hit.GetComponentInChildren<AnimationControl>().OnHit();
+        }
+    }
+
+    public void OnAttackAnim()
+    {
+        if (player.isAttacking)
+        {
+            anim.SetTrigger("isAttacking");
+        }
+    }
+
+    #endregion
+
+    public void OnHit()
+    {
+        if (!isHitting)
+        {
+            anim.SetTrigger("hurt");
+            isHitting = true;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, radius);
+    }
 }

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private float initialSpeed;
     private bool _isRunning;
     private bool _isRolling;
+    private bool _isAttacking;
     private Vector2 _direction;
 
     public Vector2 direction 
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
         set { _isRolling = value; }
     }
 
+    public bool isAttacking { get => _isAttacking; set => _isAttacking = value; }
 
     private void Start()
     {
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
         OnInput();
         OnRun();
         OnRolling();
+        OnAttacking();
     }
 
     private void FixedUpdate()
@@ -99,4 +102,17 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    void OnAttacking()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isAttacking = true;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isAttacking = false;
+        }
+    }
 }
