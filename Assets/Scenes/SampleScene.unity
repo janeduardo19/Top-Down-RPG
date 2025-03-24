@@ -26726,7 +26726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6eede1d24f7d34eb5b1e0d9d27f35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  language: 2
+  language: 0
   dialogueObj: {fileID: 569627398}
   profileSprite: {fileID: 159288720}
   speechText: {fileID: 553374400}
